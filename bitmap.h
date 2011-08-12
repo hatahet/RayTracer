@@ -32,12 +32,12 @@ inline BitmapFile::BitmapFile(int width, int height)
 
 inline BitmapFile::~BitmapFile() { }
 
-inline void BitmapFile::SetPixel(int w, int h, const Color& c) {
-  contents_.at(w + h * width_) = c;
+inline void BitmapFile::SetPixel(int x, int y, const Color& c) {
+  contents_.at(x * width_ + y) = c;
 }
 
-inline Color BitmapFile::GetPixel(int w, int h) const {
-  return contents_.at(w + h * width_);
+inline Color BitmapFile::GetPixel(int x, int y) const {
+  return contents_.at(x * width_ + y);
 }
 
 
