@@ -16,17 +16,16 @@ namespace raytracer {
     if (!fout.is_open())
       return false;
 
-    while (fout.good()) {
-      fout << kMagic << " " << width_ << " " << height_ << " " << kMaxVal << "\n";
-      for (int i = 0; i < height_; ++i) {
-        for (int j = 0; j < width_; ++j) {
-          Color c = GetPixel(i, j);
+    fout << kMagic << " " << width_ << " " << height_ << " " << kMaxVal << "\n";
+    for (int i = 0; i < height_; ++i) {
+      for (int j = 0; j < width_; ++j) {
+        Color c = GetPixel(i, j);
+        if (fout.good())
           fout << c.r << " " << c.g << " " << c.b << " ";
-        }
-        fout << "\n";
       }
+      if (fout.good())
+        fout << "\n";
     }
-
     return fout.good();
   }
 
