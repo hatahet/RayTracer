@@ -15,7 +15,7 @@ namespace raytracer {
 
 class PpmFile {
  public:
-  PpmFile(int h, int w);
+  explicit PpmFile(int h, int w);
   ~PpmFile();
 
   void SetPixel(int h, int w, const Color& c);
