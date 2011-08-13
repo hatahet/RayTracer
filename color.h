@@ -20,7 +20,6 @@ inline Color::Color(unsigned char red, unsigned char green, unsigned char blue)
     : r(red), g(green), b(blue) { }
 inline Color::~Color() { }
 
-
 }  // namespace raytracer
 
 #endif  // COLOR_H_

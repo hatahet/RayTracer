@@ -20,9 +20,12 @@ class BitmapFile {
   bool WriteToFile(const std::string& filename) const;
 
  private:
+   // TODO: swap width and height.
    int width_;
    int height_;
    std::vector<Color> contents_;
+
+   // TODO: DISALLOW_COPY_AND_ASSIGN(PpmFile);
 };
 
 inline BitmapFile::BitmapFile(int width, int height)
@@ -39,7 +42,6 @@ inline void BitmapFile::SetPixel(int x, int y, const Color& c) {
 inline Color BitmapFile::GetPixel(int x, int y) const {
   return contents_.at(x * width_ + y);
 }
-
 
 }  // namespace raytracer
 
