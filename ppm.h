@@ -15,12 +15,15 @@ namespace raytracer {
 
 class PpmFile {
  public:
-  PpmFile(int width, int height);
+  PpmFile(int h, int w);
   ~PpmFile();
 
-  void SetPixel(int w, int h, const Color& c);
-  Color GetPixel(int w, int h) const;
+  void SetPixel(int h, int w, const Color& c);
+  Color GetPixel(int h, int w) const;
   bool WriteToFile(const std::string& filename) const;
+
+  int width() const;
+  int height() const;
 
  private:
   int width_;
@@ -30,10 +33,10 @@ class PpmFile {
   DISALLOW_COPY_AND_ASSIGN(PpmFile);
 };
 
-inline PpmFile::PpmFile(int width, int height)
-    : width_(width),
-      height_(height),
-      pixels_(width * height) { }
+inline PpmFile::PpmFile(int h, int w)
+    : height_(h),
+      width_(w),
+      pixels_(w * h) { }
 
 inline PpmFile::~PpmFile() { }
 
@@ -45,6 +48,9 @@ inline void PpmFile::SetPixel(int x, int y, const Color& c) {
 inline Color PpmFile::GetPixel(int x, int y) const {
   return pixels_.at(x * width_ + y);
 }
+
+inline int PpmFile::width() const { return width_; }
+inline int PpmFile::height() const { return height_; }
 
 }  // namespace raytracer
 
