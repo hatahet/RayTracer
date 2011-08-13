@@ -22,12 +22,12 @@ class PpmFile {
   Color GetPixel(int h, int w) const;
   bool WriteToFile(const std::string& filename) const;
 
-  int width() const;
   int height() const;
+  int width() const;
 
  private:
-  int width_;
   int height_;
+  int width_;
   std::vector<Color> pixels_;
 
   DISALLOW_COPY_AND_ASSIGN(PpmFile);
