@@ -12,7 +12,7 @@ namespace raytracer {
 // TODO: Make an Image abstract class/interface
 class BitmapFile {
  public:
-  explicit BitmapFile(int width, int height);
+  BitmapFile(int width, int height);
   ~BitmapFile();
 
   void SetPixel(int w, int h, const Color& c);
