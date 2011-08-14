@@ -77,7 +77,7 @@ inline Vector3 operator*(double d, const Vector3& v) {
   return Vector3(d * v.x, d * v.y, d * v.z);
 }
 
-inline bool operator==(const Vector& l, const Vector& r) {
+inline bool operator==(const Vector3& l, const Vector3& r) {
   return l.x == r.x && l.y == r.y && l.z == r.z;
 }
 
