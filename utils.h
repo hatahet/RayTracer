@@ -22,9 +22,13 @@ inline Ray::Ray() : start(Vector3(0, 0, 0)), dir(Vector3(0, 0, 0)) { }
 inline Ray::Ray(const Vector3& s, const Vector3& d) : start(s), dir(d) { }
 
 struct Light {
+  Light(const Vector3& pos, const Color& color);
+
   Vector3 pos;
   Color color;
 };
+
+inline Light::Light(const Vector3& v, const Color& c) : pos(v), color(c) { }
 
 class Camera {
  public:
@@ -53,15 +57,17 @@ struct ISect {
 
 class SceneObject {
  public:
-    virtual bool Intersect(const Ray& ray, ISect* isect) const = 0;
-    virtual Vector3 Normal(const Vector3& pos) const = 0;
+  SceneObject(const Surface& s) : surface(s) { }
+  virtual ~SceneObject() {}
+  virtual bool Intersect(const Ray& ray, ISect* isect) const = 0;
+  virtual Vector3 Normal(const Vector3& pos) const = 0;
 
-    Surface surface;
+  Surface surface;
 };
 
 class Sphere : public SceneObject {
 public:
-  Sphere(const Vector3& center, double radius);
+  Sphere(const Surface& surface, const Vector3& center, double radius);
   ~Sphere();
 
   bool Intersect(const Ray& ray, ISect* isect) const override;
@@ -71,14 +77,14 @@ public:
   double radius;
 };
 
-inline Sphere::Sphere(const Vector3& c, double r)
-    : center(c), radius(r) { }
+inline Sphere::Sphere(const Surface& surface, const Vector3& c, double r)
+    : SceneObject(surface), center(c), radius(r) { }
 
 inline Sphere::~Sphere() { }
 
 class Plane : public SceneObject {
  public:
-  Plane(const Vector3& normal, double offset);
+  Plane(const Surface& surface, const Vector3& normal, double offset);
   ~Plane();
 
   bool Intersect(const Ray& ray, ISect* isect) const override;
@@ -88,8 +94,8 @@ class Plane : public SceneObject {
   double offset;
 };
 
-inline Plane::Plane(const Vector3& n, double o)
-    : normal(n), offset(o) { }
+inline Plane::Plane(const Surface& surface, const Vector3& n, double o)
+    : SceneObject(surface), normal(n), offset(o) { }
 
 inline Plane::~Plane() { }
 

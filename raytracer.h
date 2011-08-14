@@ -15,6 +15,10 @@ class RayTracer {
   RayTracer(int width, int height);
   ~RayTracer();
 
+  void Render(const Scene& scene);
+    int width_;
+  int height_;
+  PpmFile image_;
  private:
   std::vector<ISect> GetIntersections(const Ray& ray, const Scene& scene) const;
   double CastTestRay(const Ray& ray, const Scene& scene) const;
@@ -29,11 +33,8 @@ class RayTracer {
   double RecenterX(double x) const;
   double RecenterY(double y) const;
   Vector3 GetPoint(double x, double y, const Camera& camera) const;
-  void Render(const Scene& scene);
 
-  int width_;
-  int height_;
-  PpmFile image_;
+
 };
 
 inline RayTracer::RayTracer(int width, int height)
