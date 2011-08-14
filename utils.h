@@ -12,12 +12,14 @@ namespace raytracer {
 
 struct Ray {
   Ray();
+  Ray(const Vector3& s, const Vector3& d);
 
   Vector3 start;
   Vector3 dir;
 };
 
 inline Ray::Ray() : start(Vector3(0, 0, 0)), dir(Vector3(0, 0, 0)) { }
+inline Ray::Ray(const Vector3& s, const Vector3& d) : start(s), dir(d) { }
 
 struct Light {
   Vector3 pos;
@@ -35,9 +37,9 @@ class Camera {
 };
 
 struct Surface {
-  std::function<Vector3(Color)> Diffuse;
-  std::function<Vector3(Color)> Specular;
-  std::function<Vector3(double)> Reflect;
+  std::function<Color(const Vector3&)> Diffuse;
+  std::function<Color(const Vector3&)> Specular;
+  std::function<double(const Vector3&)> Reflect;
   double roughness;
 };
 
