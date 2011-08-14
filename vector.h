@@ -18,7 +18,7 @@ class Vector3 {
   double Dot(const Vector3& v) const;
   double Magnitude() const;
   Vector3 Cross(const Vector3& v) const;
-  Vector3 Normal(const Vector3& v) const;
+  Vector3 Normal() const;
 
   friend Vector3 operator+(const Vector3& l, const Vector3& r);
   friend Vector3 operator-(const Vector3& l, const Vector3& r);
@@ -58,11 +58,11 @@ inline Vector3 Vector3::Cross(const Vector3& v) const {
                  x*v.y - y*v.x);
 }
 
-inline Vector3 Vector3::Normal(const Vector3& v) const {
+inline Vector3 Vector3::Normal() const {
   double mag = Magnitude();
   double div = mag == 0 ?
       std::numeric_limits<double>::infinity() : 1 / mag;
-  return div * v;
+  return div * (*this);
 }
 
 inline Vector3 operator+(const Vector3& l, const Vector3& r) {
