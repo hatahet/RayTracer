@@ -35,14 +35,14 @@ inline DColor::DColor(double red, double green, double blue)
 
 inline DColor::DColor(const Color& c) : r(c.r), g(c.g), b(c.b) { }
 
-inline DColor::~DColor() { }
-
 inline DColor& DColor::operator=(const DColor& c) {
     r = c.r;
     g = c.g;
     b = c.b;
     return *this;
 }
+
+inline DColor::~DColor() { }
 
 inline Color DColor::GetColor() const {
   return Color(static_cast<unsigned char>(Normalize(r) * 255),
