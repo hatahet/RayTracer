@@ -17,7 +17,7 @@ struct Ray {
   Vector3 dir;
 };
 
-Ray::Ray() : start(Vector3(0, 0, 0)), dir(Vector3(0, 0, 0)) { }
+inline Ray::Ray() : start(Vector3(0, 0, 0)), dir(Vector3(0, 0, 0)) { }
 
 struct Light {
   Vector3 pos;
@@ -69,10 +69,10 @@ public:
   double radius;
 };
 
-Sphere::Sphere(const Vector3& c, double r)
+inline Sphere::Sphere(const Vector3& c, double r)
     : center(c), radius(r) { }
 
-Sphere::~Sphere() { }
+inline Sphere::~Sphere() { }
 
 class Plane : public SceneObject {
  public:
@@ -86,10 +86,10 @@ class Plane : public SceneObject {
   double offset;
 };
 
-Plane::Plane(const Vector3& n, double o)
+inline Plane::Plane(const Vector3& n, double o)
     : normal(n), offset(o) { }
 
-Plane::~Plane() { }
+inline Plane::~Plane() { }
 
 class Scene {
  public:
