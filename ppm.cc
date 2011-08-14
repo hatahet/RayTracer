@@ -20,7 +20,7 @@ namespace raytracer {
          << static_cast<unsigned int>(kMaxVal) << "\n";
     for (int i = 0; i < height_; ++i) {
       for (int j = 0; j < width_; ++j) {
-        Color c = GetPixel(i, j);
+        DColor c = GetPixel(i, j).GetDColor();
         if (fout.good())
           fout << static_cast<unsigned int>(c.r) << " " 
                << static_cast<unsigned int>(c.g) << " " 
